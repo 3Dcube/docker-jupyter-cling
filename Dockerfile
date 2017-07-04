@@ -78,17 +78,6 @@ WORKDIR $HOME
 # Configure container startup
 ENTRYPOINT ["tini", "--"]
 CMD ["start-notebook.sh"]
-
-# Add local files as late as possible to avoid cache busting
-COPY start.sh /usr/local/bin/
-COPY start-notebook.sh /usr/local/bin/
-COPY start-singleuser.sh /usr/local/bin/
-COPY jupyter_notebook_config.py /etc/jupyter/
-RUN chmod +x /usr/local/bin/start-notebook.sh
-RUN chown -R $NB_USER:users /etc/jupyter/
-
-# Switch back to jovyan to avoid accidental container runs as root
-USER $NB_USER
 ##########################################################################################################
 ##########################################################################################################
 ##########################################################################################################
@@ -102,6 +91,14 @@ RUN apt-get update && \
 RUN mkdir /cling
 RUN chown -R $NB_USER:users /cling
 WORKDIR /cling
+
+# Add local files as late as possible to avoid cache busting
+COPY start.sh /usr/local/bin/
+COPY start-notebook.sh /usr/local/bin/
+COPY start-singleuser.sh /usr/local/bin/
+COPY jupyter_notebook_config.py /etc/jupyter/
+RUN chown -R $NB_USER:users /etc/jupyter/
+RUN chmod +x /usr/local/bin/start.sh /usr/local/bin/start-notebook.sh /usr/local/bin/start-singleuser.sh 
 
 # Download cling from https://root.cern.ch/download/cling/
 USER $NB_USER
