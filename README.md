@@ -1,7 +1,5 @@
 # Jupyter Cling
 
-[hub.docker.com/r/3dcube/jupyter-cling](https://hub.docker.com/r/3dcube/jupyter-cling)
-
 ![docker pulls](https://img.shields.io/docker/pulls/3dcube/jupyter-cling.svg) ![docker stars](https://img.shields.io/docker/stars/3dcube/jupyter-cling.svg)
 
 ## Basic Use
