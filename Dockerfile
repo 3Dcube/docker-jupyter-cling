@@ -108,7 +108,6 @@ RUN python download_cling.py
 # install cling kernel
 WORKDIR /cling/share/cling/Jupyter/kernel
 RUN pip install -e .
-RUN jupyter-kernelspec install --user cling-cpp14
 RUN jupyter-kernelspec install --user cling-cpp11
 
 WORKDIR $HOME
